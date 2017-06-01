@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Marc Choisy" />
+
+<meta name="date" content="2017-06-01" />
+
+<title>Using globcoverVN</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Using <code>globcoverVN</code></h1>
+<h4 class="author"><em>Marc Choisy</em></h4>
+<h4 class="date"><em>2017-06-01</em></h4>
+
+</div>
+
+
+<p>The <code>globcoverVN</code> package contains land use data for Vietnam from the <a href="http://due.esrin.esa.int/page_globcover.php">GlobCover</a> project. It is made of a <code>rasterLayer</code> object that can be loaded with the <code>getgcvn</code> function and of the <code>SpatialPolygonsDataFrame</code> <code>provinces</code> object that contains, for each province, the percentage of land cover of each type. Below we describe in detail these data and their use.</p>
+<div id="installation-and-loading" class="section level2">
+<h2>Installation and loading</h2>
+<p>You can install <code>globcoverVN</code> from <a href="https://bitbucket.org/choisy/globcovervn">Bitbucket</a> with:</p>
+<pre class="r"><code>&gt; # install.packages(&quot;devtools&quot;)
+&gt; devtools::install_bitbucket(&quot;choisy/globcoverVN&quot;, build_vignettes = TRUE)</code></pre>
+<p>Once installed, you can load the package:</p>
+<pre class="r"><code>&gt; library(globcoverVN)</code></pre>
+</div>
+<div id="usage-examples" class="section level2">
+<h2>Usage examples</h2>
+<p>The raster file can be loaded by the <code>getgcvn</code> function:</p>
+<pre class="r"><code>&gt; landuse &lt;- getgcvn()</code></pre>
+<p>The code of the different categories of landuse can be seen with the <code>legend</code> method:</p>
+<pre class="r"><code>&gt; show_legend(landuse)
+ 11 : Post-flooding or irrigated croplands (or aquatic)
+ 14 : Rainfed croplands
+ 20 : Mosaic cropland (50-70%) / vegetation (grassland/shrubland/forest) (20-50%)
+ 30 : Mosaic vegetation (grassland/shrubland/forest) (50-70%) / cropland (20-50%)
+ 40 : Closed to open (&gt;15%) broadleaved evergreen or semi-deciduous forest (&gt;5m)
+ 50 : Closed (&gt;40%) broadleaved deciduous forest (&gt;5m)
+ 60 : Open (15-40%) broadleaved deciduous forest/woodland (&gt;5m)
+ 70 : Closed (&gt;40%) needleleaved evergreen forest (&gt;5m)
+100 : Closed to open (&gt;15%) mixed broadleaved and needleleaved forest (&gt;5m)
+110 : Mosaic forest or shrubland (50-70%) / grassland (20-50%)
+120 : Mosaic grassland (50-70%) / forest or shrubland (20-50%)
+130 : Closed to open (&gt;15%) (broadleaved or needleleaved, evergreen or deciduous) shrubland (&lt;5m)
+140 : Closed to open (&gt;15%) herbaceous vegetation (grassland, savannas or lichens/mosses)
+150 : Sparse (&lt;15%) vegetation
+160 : Closed to open (&gt;15%) broadleaved forest regularly flooded (semi-permanently or temporarily) - Fresh or brackish water
+170 : Closed (&gt;40%) broadleaved forest or shrubland permanently flooded - Saline or brackish water
+190 : Artificial surfaces and associated areas (Urban areas &gt;50%)
+200 : Bare areas
+210 : Water bodies
+220 : Permanent snow and ice</code></pre>
+<p>The output can also be assigned to an data frame:</p>
+<pre class="r"><code>&gt; leg &lt;- show_legend(landuse)
+ 11 : Post-flooding or irrigated croplands (or aquatic)
+ 14 : Rainfed croplands
+ 20 : Mosaic cropland (50-70%) / vegetation (grassland/shrubland/forest) (20-50%)
+ 30 : Mosaic vegetation (grassland/shrubland/forest) (50-70%) / cropland (20-50%)
+ 40 : Closed to open (&gt;15%) broadleaved evergreen or semi-deciduous forest (&gt;5m)
+ 50 : Closed (&gt;40%) broadleaved deciduous forest (&gt;5m)
+ 60 : Open (15-40%) broadleaved deciduous forest/woodland (&gt;5m)
+ 70 : Closed (&gt;40%) needleleaved evergreen forest (&gt;5m)
+100 : Closed to open (&gt;15%) mixed broadleaved and needleleaved forest (&gt;5m)
+110 : Mosaic forest or shrubland (50-70%) / grassland (20-50%)
+120 : Mosaic grassland (50-70%) / forest or shrubland (20-50%)
+130 : Closed to open (&gt;15%) (broadleaved or needleleaved, evergreen or deciduous) shrubland (&lt;5m)
+140 : Closed to open (&gt;15%) herbaceous vegetation (grassland, savannas or lichens/mosses)
+150 : Sparse (&lt;15%) vegetation
+160 : Closed to open (&gt;15%) broadleaved forest regularly flooded (semi-permanently or temporarily) - Fresh or brackish water
+170 : Closed (&gt;40%) broadleaved forest or shrubland permanently flooded - Saline or brackish water
+190 : Artificial surfaces and associated areas (Urban areas &gt;50%)
+200 : Bare areas
+210 : Water bodies
+220 : Permanent snow and ice</code></pre>
+<p>And then:</p>
+<pre class="r"><code>&gt; str(leg)
+&#39;data.frame&#39;:   20 obs. of  3 variables:
+ $ landtype: chr  &quot;Post-flooding or irrigated croplands (or aquatic)&quot; &quot;Rainfed croplands&quot; &quot;Mosaic cropland (50-70%) / vegetation (grassland/shrubland/forest) (20-50%)&quot; &quot;Mosaic vegetation (grassland/shrubland/forest) (50-70%) / cropland (20-50%)&quot; ...
+ $ code    : num  11 14 20 30 40 50 60 70 100 110 ...
+ $ color   : chr  &quot;#AAF0F0&quot; &quot;#FFFF64&quot; &quot;#DCF064&quot; &quot;#CDCD66&quot; ...</code></pre>
+<p>This raster file can be plotted as follow:</p>
+<pre class="r"><code>&gt; colors &lt;- leg$color
+&gt; plot(landuse, col = colors, legend = FALSE, axes = FALSE)
+&gt; l &lt;- length(colors)
+&gt; x &lt;- ceiling(l / 2)
+&gt; sel1 &lt;- 1:x
+&gt; sel2 &lt;- (x + 1):l
+&gt; leg1 &lt;- leg$code[sel1]
+&gt; leg2 &lt;- leg$code[sel2]
+&gt; col1 &lt;- colors[sel1]
+&gt; col2 &lt;- colors[sel2]
+&gt; legend(&quot;left&quot;, legend = leg1, fill = col1, bty = &quot;n&quot;)
+&gt; legend(&quot;right&quot;, legend = leg2, fill = col2, bty = &quot;n&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="407.736" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; show_legend(landuse)
+ 11 : Post-flooding or irrigated croplands (or aquatic)
+ 14 : Rainfed croplands
+ 20 : Mosaic cropland (50-70%) / vegetation (grassland/shrubland/forest) (20-50%)
+ 30 : Mosaic vegetation (grassland/shrubland/forest) (50-70%) / cropland (20-50%)
+ 40 : Closed to open (&gt;15%) broadleaved evergreen or semi-deciduous forest (&gt;5m)
+ 50 : Closed (&gt;40%) broadleaved deciduous forest (&gt;5m)
+ 60 : Open (15-40%) broadleaved deciduous forest/woodland (&gt;5m)
+ 70 : Closed (&gt;40%) needleleaved evergreen forest (&gt;5m)
+100 : Closed to open (&gt;15%) mixed broadleaved and needleleaved forest (&gt;5m)
+110 : Mosaic forest or shrubland (50-70%) / grassland (20-50%)
+120 : Mosaic grassland (50-70%) / forest or shrubland (20-50%)
+130 : Closed to open (&gt;15%) (broadleaved or needleleaved, evergreen or deciduous) shrubland (&lt;5m)
+140 : Closed to open (&gt;15%) herbaceous vegetation (grassland, savannas or lichens/mosses)
+150 : Sparse (&lt;15%) vegetation
+160 : Closed to open (&gt;15%) broadleaved forest regularly flooded (semi-permanently or temporarily) - Fresh or brackish water
+170 : Closed (&gt;40%) broadleaved forest or shrubland permanently flooded - Saline or brackish water
+190 : Artificial surfaces and associated areas (Urban areas &gt;50%)
+200 : Bare areas
+210 : Water bodies
+220 : Permanent snow and ice</code></pre>
+<p>In addition to this <code>RasterLayer</code> resource, the package also provides <code>SpatialPolygonsDataFrame</code> resources that contains the polygons of the provinces of Vietnam at different points in time together with the proportions of the different categories of land use for each province, in the form of attributes. These <code>SpatialPolygonsDataFrame</code> resources can be retrieved thanks to the <code>getlanduse</code> function:</p>
+<pre class="r"><code>&gt; prov2008 &lt;- getlanduse(2008)
+&gt; str(prov2008@data)
+&#39;data.frame&#39;:   63 obs. of  41 variables:
+ $ province: chr  &quot;An Giang&quot; &quot;Ba Ria - Vung Tau&quot; &quot;Bac Giang&quot; &quot;Bac Kan&quot; ...
+ $ 11      : num  0.911396 0.03667 0.007003 0.000273 0.321547 ...
+ $ 14      : num  0.0213 0.37934 0.23353 0.00627 0.19674 ...
+ $ 20      : num  0.01063 0.07835 0.12403 0.00878 0.13278 ...
+ $ 30      : num  0.00514 0.01746 0.19113 0.0605 0.0666 ...
+ $ 40      : num  0.0021 0.15572 0.20113 0.46956 0.00809 ...
+ $ 50      : num  7.96e-05 1.02e-03 2.73e-04 1.82e-05 4.96e-04 ...
+ $ 60      : num  1.54e-03 6.52e-03 1.55e-03 4.56e-03 7.63e-05 ...
+ $ 70      : num  0.000424 0.006371 0.014393 0.040316 0.022924 ...
+ $ 100     : num  0.000769 0.047807 0.034197 0.040535 0.065225 ...
+ $ 110     : num  1.06e-04 0.00 4.55e-05 3.64e-05 1.87e-03 ...
+ $ 120     : num  5.30e-05 0.00 4.55e-05 3.64e-05 2.52e-03 ...
+ $ 130     : num  0.0137 0.1982 0.1794 0.3686 0.0437 ...
+ $ 140     : num  0.00289 0.03414 0.00487 0 0.1364 ...
+ $ 150     : num  0 0.000535 0 0 0 ...
+ $ 160     : num  0 0 0 0 0 ...
+ $ 170     : num  0 0.021545 0 0 0.000267 ...
+ $ 190     : num  0 0.00199 0 0 0 ...
+ $ 200     : num  7.96e-05 2.58e-03 9.09e-05 0.00 1.91e-04 ...
+ $ 210     : num  0.029756 0.011721 0.008276 0.000546 0.000572 ...
+ $ 220     : num  0 0 0 0 0 ...
+ $ 11_pop  : num  0.8196 0.1236 0.0213 0.0104 0.3604 ...
+ $ 14_pop  : num  0.0408 0.3648 0.447 0.0333 0.2064 ...
+ $ 20_pop  : num  0.0454 0.1517 0.2086 0.0491 0.1534 ...
+ $ 30_pop  : num  0.0127 0.065 0.1987 0.1036 0.0537 ...
+ $ 40_pop  : num  0.00326 0.05868 0.03871 0.38485 0.00533 ...
+ $ 50_pop  : num  1.67e-04 9.14e-04 3.03e-04 1.72e-05 3.71e-04 ...
+ $ 60_pop  : num  0.001807 0.007032 0.003118 0.002707 0.000123 ...
+ $ 70_pop  : num  0.000239 0.002357 0.001826 0.032272 0.014596 ...
+ $ 100_pop : num  0.000376 0.02007 0.008279 0.051629 0.040319 ...
+ $ 110_pop : num  7.09e-05 0.00 3.06e-05 1.33e-05 1.39e-03 ...
+ $ 120_pop : num  1.83e-05 0.00 7.30e-06 3.07e-05 1.58e-03 ...
+ $ 130_pop : num  0.0192 0.0814 0.0588 0.3318 0.0343 ...
+ $ 140_pop : num  0.0123 0.04755 0.00652 0 0.12702 ...
+ $ 150_pop : num  0 0.0013 0 0 0 ...
+ $ 160_pop : num  0 0 0 0 0 ...
+ $ 170_pop : num  0 0.006013 0 0 0.000152 ...
+ $ 190_pop : num  0 0.0267 0 0 0 ...
+ $ 200_pop : num  0.003619 0.035835 0.00019 0 0.000237 ...
+ $ 210_pop : num  0.040463 0.007022 0.006633 0.000406 0.00072 ...
+ $ 220_pop : num  0 0 0 0 0 0 0 0 0 0 ...</code></pre>
+<p>The variables whose names end with <code>_pop</code> correspond to percentages of land cover when correcting for the local human population density as available from the <code>worldpopVN</code> package. The user interested in seeing how this is computed can have a look at the <code>data_creation</code> script in the <code>data-raw</code> folder of the package sources. This script makes use of the <code>lusummary</code> and <code>lupopsummary</code> non-exported functions that are in the <code>lusummary.R</code> and <code>lupopsummary.R</code> files in the <code>R</code> folder of the package sources. One can verify that the percentages of land use sum to 1:</p>
+<pre class="r"><code>&gt; rowSums(prov2008@data[, 2:21])
+ 1  6  2  3  4  5  7  8  9 10 11 12 13 14 17 15 16 18 19 20 21 22 25 26 27 
+ 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 
+23 24 28 30 29 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 
+ 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 
+51 52 53 54 55 56 57 58 59 60 61 62 63 
+ 1  1  1  1  1  1  1  1  1  1  1  1  1 
+&gt; rowSums(prov2008@data[, 22:41])
+ 1  6  2  3  4  5  7  8  9 10 11 12 13 14 17 15 16 18 19 20 21 22 25 26 27 
+ 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 
+23 24 28 30 29 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 
+ 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 
+51 52 53 54 55 56 57 58 59 60 61 62 63 
+ 1  1  1  1  1  1  1  1  1  1  1  1  1 </code></pre>
+<p>You can also check that, for example, in Vietnam, there is no “Permanent snow and ice”:</p>
+<pre class="r"><code>&gt; sum(prov2008@data$`220`)
+[1] 0.0006297298
+&gt; sum(prov2008@data$`220_pop`)
+[1] 0.0001935054</code></pre>
+<p>This data can be visualize this way as for the example show below for the “Post-flooding or irrigated croplands (or aquatic)”. Let’s first make a palette of colors form <code>RColorBrewer</code>:</p>
+<pre class="r"><code>&gt; n &lt;- 9
+&gt; pal &lt;- RColorBrewer::brewer.pal(n, &quot;Blues&quot;)</code></pre>
+<p>Let’s find a classes intervals definition:</p>
+<pre class="r"><code>&gt; library(classInt)
+&gt; tmp &lt;- classIntervals(prov2008@data$`11`, n = n, style = &quot;quantile&quot;)
+&gt; plot(tmp, pal = pal, main = NA)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" width="407.736" style="display: block; margin: auto;" /></p>
+<p>Once we’re satisfied with the class interval definition we can plot the map:</p>
+<pre class="r"><code>&gt; plot(prov2008, col = findColours(tmp, pal))</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" width="407.736" style="display: block; margin: auto;" /></p>
+<p>Or, with another definition of the classes intervals:</p>
+<pre class="r"><code>&gt; tmp &lt;- classIntervals(prov2008@data$`11`, n = n, style = &quot;jenks&quot;)
+&gt; plot(tmp, pal = pal, main = NA)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" width="407.736" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; plot(prov2008, col = findColours(tmp, pal))</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-15-2.png" width="407.736" style="display: block; margin: auto;" /></p>
+<p>The same thing, but with values weighted by the local human population density:</p>
+<pre class="r"><code>&gt; tmp &lt;- classIntervals(prov2008@data$`11_pop`, n = n, style = &quot;jenks&quot;)
+&gt; plot(tmp, pal = pal, main = NA)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" width="407.736" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; plot(prov2008, col = findColours(tmp, pal))</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-16-2.png" width="407.736" style="display: block; margin: auto;" /></p>
+<p>As another example, let’s see the urban areas:</p>
+<pre class="r"><code>&gt; tmp &lt;- classIntervals(prov2008@data$`190_pop`, n = n, style = &quot;jenks&quot;)
+Warning in classIntervals(prov2008@data$`190_pop`, n = n, style = &quot;jenks&quot;):
+n greater than number of different finite values\nn reset to number of
+different finite values
+Warning in classIntervals(prov2008@data$`190_pop`, n = n, style = &quot;jenks&quot;):
+n same as number of different finite values\neach different finite value is
+a separate class
+&gt; plot(tmp, pal = pal, main = NA)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" width="407.736" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>&gt; plot(prov2008, col = findColours(tmp, pal))</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-17-2.png" width="407.736" style="display: block; margin: auto;" /></p>
+<p>Which, again, makes quite some sense (apart maybe for Cao Bang and Hai Phong?).</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
