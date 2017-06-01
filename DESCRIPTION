@@ -1,0 +1,14 @@
+Package: globcoverVN
+Type: Package
+Title: Land use data for Vietnam from the GlobCover project
+Version: 0.1.0
+Author: Marc Choisy
+Maintainer: Marc Choisy <marc.choisy@ird.fr>
+Description: Contains raster and polygon data on land use in Vietnam from the GlobCover project.
+License: MIT
+LazyData: TRUE
+RoxygenNote: 5.0.1
+Depends: raster
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
