@@ -31,4 +31,3 @@ before 2008-01-01.
 \author{
 Marc Choisy
 }
-

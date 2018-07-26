@@ -4,7 +4,7 @@
 \alias{getgcvn}
 \title{sdgsdfg}
 \usage{
-getgcvn(x)
+getgcvn()
 }
 \description{
 dsfgfdsg
@@ -13,4 +13,3 @@ dsfgfdsg
 dsfgsdfg
 dsfgdsfg
 }
-

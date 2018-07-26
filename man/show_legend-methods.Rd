@@ -10,7 +10,9 @@ show_legend(object)
 
 \S4method{show_legend}{RasterLayer}(object)
 }
+\arguments{
+\item{object}{an object of type raster}
+}
 \description{
 Print to screen the legend of a spatial object.
 }
-

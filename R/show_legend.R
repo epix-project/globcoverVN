@@ -2,6 +2,8 @@
 #'
 #' Print to screen the legend of a spatial object.
 #'
+#' @param object an object of type raster
+#'
 #' @docType methods
 #' @rdname show_legend-methods
 #'

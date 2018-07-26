@@ -70,4 +70,3 @@ provinces of Vietnam come from the \href{http://www.gadm.org}{GADM} project
 as available from the \code{gadmVN} package.
 }
 \keyword{datasets}
-

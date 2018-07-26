@@ -5,7 +5,7 @@
 #' dsfgsdfg
 #' dsfgdsfg
 #' @export
-getgcvn <- function(x) {
+getgcvn <- function() {
   get("globcoverVN")
   globcoverVN@file@name <- system.file("extdata",
                                        "globcoverVN.tif",
