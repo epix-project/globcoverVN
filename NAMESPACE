@@ -3,3 +3,4 @@
 export(getgcvn)
 export(getlanduse)
 export(show_legend)
+importFrom(stats,setNames)
