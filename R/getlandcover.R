@@ -3,8 +3,6 @@
 #' Generates a provinces map of Vietnam for a given date with proportions of
 #' each land cover category as attributes.
 #'
-#' These maps are prepared by
-#'
 #' @note argument \code{merge_hanoi} makes a difference only for \code{date}
 #' before 2008-01-01.
 #'
@@ -16,6 +14,13 @@
 #' @author Marc Choisy
 #' @export
 #' @return An object of class "SpatialPolygonsDataFrame".
+#' @examples
+#' # with the province definition of 2015:
+#' prov15_landcover <- getlandcover()
+#'
+#' # with the province definition of 1980 with the provinces of Ha Noi and Ha
+#' # Son Binh merged:
+#' prov80_landcover <- getlandcover(1980, TRUE)
 getlandcover <- function(date = "2015-01-01", merge_hanoi = FALSE) {
   if (class(date) == "Date" | is.character(date)) date <- sub("-.*$", "",  date)
   years <- c(2008, 2004, 1997, 1992, 1991, 1990, 1979)

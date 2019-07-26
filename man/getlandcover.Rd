@@ -21,12 +21,17 @@ An object of class "SpatialPolygonsDataFrame".
 Generates a provinces map of Vietnam for a given date with proportions of
 each land cover category as attributes.
 }
-\details{
-These maps are prepared by
-}
 \note{
 argument \code{merge_hanoi} makes a difference only for \code{date}
 before 2008-01-01.
+}
+\examples{
+# with the province definition of 2015:
+prov15_landcover <- getlandcover()
+
+# with the province definition of 1980 with the provinces of Ha Noi and Ha
+# Son Binh merged:
+prov80_landcover <- getlandcover(1980, TRUE)
 }
 \author{
 Marc Choisy
