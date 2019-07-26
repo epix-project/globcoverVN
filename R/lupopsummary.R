@@ -14,14 +14,17 @@
 #' @noRd
 lupopsummary <- function(landcover, population, polygons, spatial_unit_names) {
 
-  if (any(!c(identical(projection(landcover), projection(population)),
-             identical(projection(landcover), projection(polygons)),
-             identical(projection(polygons), projection(population)))))
+  if (any(!c(identical(raster::projection(landcover),
+                       raster::projection(population)),
+             identical(raster::projection(landcover),
+                       raster::projection(polygons)),
+             identical(raster::projection(polygons),
+                       raster::projection(population)))))
     stop("'landcover', 'population', and 'polygon' should have the same ",
          "projections")
 
-  if (!identical(res(landcover), res(population))) {
-    if (res(population)[1] < res(landcover)[1])
+  if (!identical(res(landcover), raster::res(population))) {
+    if (raster::res(population)[1] < raster::res(landcover)[1])
       population <- raster::resample(population, landcover)
     else landcover <- raster::resample(landcover, population)
   }

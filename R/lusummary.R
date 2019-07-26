@@ -13,7 +13,7 @@
 #' @noRd
 lusummary <- function(landcover, polygons, spatial_unit_names) {
 
-  if (!identical(projection(landcover), projection(polygons)))
+  if (!identical(raster::projection(landcover), raster::projection(polygons)))
     stop("'landcover' and 'polygon' should have the same projections")
 
   # let's extract the land cover by province:
