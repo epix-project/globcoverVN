@@ -2,14 +2,15 @@
 % Please edit documentation in R/getgcvn.R
 \name{getgcvn}
 \alias{getgcvn}
-\title{sdgsdfg}
+\title{Get local land cover}
 \usage{
 getgcvn()
 }
 \description{
-dsfgfdsg
+Retrieves a raster file containing the land cover of Vietnam.
 }
-\details{
-dsfgsdfg
-dsfgdsfg
+\examples{
+library(raster)
+landcover <- getgcvn()
+plot(landcover)
 }
