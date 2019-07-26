@@ -1,6 +1,6 @@
 # globcoverVN 
 
-The `globcoverVN` package contains land use data for Vietnam from the 
+The `globcoverVN` package contains land cover data for Vietnam from the 
 [GlobCover](http://due.esrin.esa.int/page_globcover.php) project. It is made of
 a `rasterLayer` object that can be loaded with the `getgcvn` function and of the
 `SpatialPolygonsDataFrame` `provinces` object that contains, for each province,
@@ -9,11 +9,11 @@ data and their use.
 
 ## Installation and loading
 
-You can install `globcoverVN` from [Bitbucket](https://bitbucket.org/choisy/globcovervn) with:
+You can install `globcoverVN` from [GitHub](https://github.com/choisy/globcoverVN) with:
 
 ```{r eval = FALSE}
 # install.packages("devtools")
-devtools::install_bitbucket("choisy/globcoverVN", build_vignettes = TRUE)
+devtools::install_github("choisy/globcoverVN", build_vignettes = TRUE)
 ```
 
 Once installed, you can load the package:
@@ -28,20 +28,20 @@ library(globcoverVN)
 The raster file can be loaded by the `getgcvn` function:
 
 ```{r}
-landuse <- getgcvn()
+landcover <- getgcvn()
 ```
 
-The code of the different categories of landuse can be seen with the `legend`
+The code of the different categories of land cover can be seen with the `legend`
 method:
 
 ```{r}
-show_legend(landuse)
+show_legend(landcover)
 ```
 
 The output can also be assigned to an data frame:
 
 ```{r}
-leg <- show_legend(landuse)
+leg <- show_legend(landcover)
 ```
 
 And then:
@@ -54,7 +54,7 @@ This raster file can be plotted as follow:
 
 ```{r}
 colors <- leg$color
-plot(landuse, col = colors, legend = FALSE, axes = FALSE)
+plot(landcover, col = colors, legend = FALSE, axes = FALSE)
 l <- length(colors)
 x <- ceiling(l / 2)
 sel1 <- 1:x
@@ -65,18 +65,18 @@ col1 <- colors[sel1]
 col2 <- colors[sel2]
 legend("left", legend = leg1, fill = col1, bty = "n")
 legend("right", legend = leg2, fill = col2, bty = "n")
-show_legend(landuse)
+show_legend(landcover)
 ```
 
 In addition to this `RasterLayer` resource, the package also provides 
 `SpatialPolygonsDataFrame` resources that contains the polygons of the provinces
 of Vietnam at different points in time together with the proportions of the
-different categories of land use for each province, in the form of attributes.
+different categories of land cover for each province, in the form of attributes.
 These `SpatialPolygonsDataFrame` resources can be retrieved thanks to the
-`getlanduse` function:
+`getlandcover` function:
 
 ```{r}
-prov2008 <- getlanduse(2008)
+prov2008 <- getlandcover(2008)
 str(prov2008@data)
 ```
 
@@ -87,7 +87,7 @@ have a look at the `data_creation` script in the `data-raw` folder of the
 package sources. This script makes use of the `lusummary` and `lupopsummary`
 non-exported functions that are in the `lusummary.R` and `lupopsummary.R` files
 in the `R` folder of the package sources. One can verify that the percentages of
-land use sum to 1:
+land cover sum to 1:
 
 ```{r}
 rowSums(prov2008@data[, 2:21])
