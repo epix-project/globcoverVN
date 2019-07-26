@@ -15,16 +15,22 @@ Description: Contains raster and polygon data on land cover in Vietnam from the
 License: MIT + file LICENSE
 URL: https://github.com/choisy/globcoverVN
 BugReports: https://github.com/choisy/globcoverVN/issues
+Encoding: UTF-8
 LazyData: TRUE
 RoxygenNote: 6.1.1
 Depends: R (>= 2.10)
-Imports: dplyr,
+Suggests:
+    dplyr,
     weights,
-    raster
-Suggests: knitr,
+    raster,
+    knitr,
     rmarkdown,
     classInt,
     class,
     RColorBrewer,
-    methods
+    methods,
+    sf,
+    sp,
+    gadmVN,
+    testthat
 VignetteBuilder: knitr
