@@ -1,3 +1,17 @@
+#' Extract the ratio of land cover by polygons weighted by population
+#'
+#' @param landcover RasterLayer of land cover
+#' @param polygons SpatialPolygons
+#' @param spatial_unit_names character string
+#'
+#' @examples
+#' library(sf)
+#' landcover <- globcoverVN::getgcvn()
+#' population <- worldpopVN::getpop(2015)
+#' polygons <- as_Spatial(gadmVN::gadm())
+#' polygons@proj4string <- population@crs
+#' globcoverVN:::lupopsummary(landcover, population, polygons, "province")
+#' @noRd
 lupopsummary <- function(landcover, population, polygons, spatial_unit_names) {
 
   if (any(!c(identical(projection(landcover), projection(population)),
@@ -16,7 +30,7 @@ lupopsummary <- function(landcover, population, polygons, spatial_unit_names) {
   population <- setNames(raster::extract(population, polygons),
                          polygons[[spatial_unit_names]])
 
-# let's extract the land use by province:
+# let's extract the land cover by province:
   landcover <- setNames(raster::extract(landcover, polygons),
                       polygons[[spatial_unit_names]])
 
@@ -38,7 +52,7 @@ lupopsummary <- function(landcover, population, polygons, spatial_unit_names) {
     landcover <- landcover[-sel]
   }
 
-# let's compute the weighted tables of land use:
+# let's compute the weighted tables of land cover:
   out <- mapply(weights::wpct, landcover, population)
 
 # transform the outputs into data frames:
@@ -55,11 +69,3 @@ lupopsummary <- function(landcover, population, polygons, spatial_unit_names) {
 # return the output:
   out
 }
-
-# Let's try it:
-#landcover <- globcoverVN::getgcvn()
-#population <- worldpopVN::getpop(2015)
-#polygons <- gadmVN::gadm()
-#polygons@proj4string <- population@crs
-#essai <- lupopsummary(landcover, population, polygons, "province")
-

@@ -1,13 +1,26 @@
+#' Extract the ratio of land cover by polygons
+#'
+#' @param landcover RasterLayer of land cover
+#' @param polygons SpatialPolygons
+#' @param spatial_unit_names character string
+#'
+#' @examples
+#' library(sf)
+#' landcover <- globcoverVN::getgcvn()
+#' polygons <- as_Spatial(gadmVN::gadm())
+#' polygons@proj4string <- landcover@crs
+#' globcoverVN:::lusummary(landcover, polygons, "province")
+#' @noRd
 lusummary <- function(landcover, polygons, spatial_unit_names) {
 
   if (!identical(projection(landcover), projection(polygons)))
     stop("'landcover' and 'polygon' should have the same projections")
 
-  # let's extract the land use by province:
+  # let's extract the land cover by province:
   landcover <- setNames(raster::extract(landcover, polygons),
                       polygons[[spatial_unit_names]])
 
-  # let's compute the tables of land use:
+  # let's compute the tables of land cover:
   out <- lapply(landcover, table)
 
   # transform the outputs into data frames:
@@ -25,10 +38,4 @@ lusummary <- function(landcover, polygons, spatial_unit_names) {
   # return the output:
   out
 }
-
-# Let's try it:
-#landcover <- globcoverVN::getgcvn()
-#polygons <- gadmVN::gadm()
-#polygons@proj4string <- landcover@crs
-#essai <- lusummary(landcover, polygons, "province")
 
