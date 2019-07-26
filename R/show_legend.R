@@ -6,7 +6,20 @@
 #'
 #' @docType methods
 #' @rdname show_legend-methods
+#' @examples
+#' library(raster)
+#' landcover <- getgcvn()
+#' leg <- show_legend(landcover)
 #'
+#' colors <- leg$color
+#' plot(landcover, col = colors, legend = FALSE, axes = FALSE)
+#' l <- length(colors)
+#' x <- ceiling(l / 2)
+#' sel1 <- 1:x
+#' sel2 <- (x + 1):l
+#' legend("left", legend = leg$code[sel1], fill = colors[sel1], bty = "n")
+#' legend("right", legend = leg$code[sel2], fill = colors[sel2], bty = "n")
+#' leg
 #' @export
 setGeneric("show_legend", function(object) {
   standardGeneric("show_legend")
