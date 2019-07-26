@@ -1,7 +1,7 @@
-#' Proportions of provinces per landuse
+#' Proportions of provinces per landcover
 #'
 #' Generates a provinces map of Vietnam for a given date with proportions of
-#' each land use category as attributes.
+#' each land cover category as attributes.
 #'
 #' These maps are prepared by
 #'
@@ -16,7 +16,7 @@
 #' @author Marc Choisy
 #' @export
 #' @return An object of class "SpatialPolygonsDataFrame".
-getlanduse <- function(date = "2015-01-01", merge_hanoi = FALSE) {
+getlandcover <- function(date = "2015-01-01", merge_hanoi = FALSE) {
   if (class(date) == "Date" | is.character(date)) date <- sub("-.*$", "",  date)
   years <- c(2008, 2004, 1997, 1992, 1991, 1990, 1979)
   sel <- sum(date < c(1990:1992, 1997, 2004, 2008)) + 1

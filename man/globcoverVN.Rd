@@ -4,8 +4,8 @@
 \name{globcoverVN}
 \alias{globcoverVN}
 \alias{globcoverVN-package}
-\title{globcoverVN: land use of Vietnam from the GlobCover project.}
+\title{globcoverVN: land cover of Vietnam from the GlobCover project.}
 \description{
-The globcover package provides land use data for Vietnam from the GlobCover
-project. The data contain 20 types of land use.
+The globcover package provides land cover data for Vietnam from the GlobCover
+project. The data contain 20 types of land cover.
 }

@@ -1,10 +1,10 @@
-#' Land use by province for Vietnam
+#' Land cover by province for Vietnam
 #'
 #' An object of class \code{SpatialPolygonsDataFrame} containing the polygons of the
 #' provinces of Vietnam as of after 2008 and the land cover proportions weighted
 #' or not by the local human population density.
 #'
-#' The land use data come from the \href{http://due.esrin.esa.int/page_globcover.php}{GlobCover}
+#' The land cover data come from the \href{http://due.esrin.esa.int/page_globcover.php}{GlobCover}
 #' project as available from the current package through the function \code{getgcvn}
 #' function, the local human population density data come from the
 #' \href{http://www.worldpop.org.uk}{WorldPop} project as available from the

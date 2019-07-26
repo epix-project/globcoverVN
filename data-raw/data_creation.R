@@ -18,16 +18,16 @@ globcoverVN@legend@names <- globcover@legend@names[sel]
 
 # ------------------------------------------------------------------------------
 
-landuse <- globcoverVN::getgcvn()
+landcover <- globcoverVN::getgcvn()
 population <- worldpopVN::getpop(2015)
 #provinces <- gadmVN::gadm()
 #provinces@proj4string <- population@crs
 
 fct <- function(provinces) {
-  lucovperc <- lupopsummary(landuse, population, provinces, "province")
+  lucovperc <- lupopsummary(landcover, population, provinces, "province")
   names(lucovperc)[-1] <- paste0(names(lucovperc)[-1], "_pop")
   provinces <- merge(provinces, lucovperc)
-  provinces <- merge(provinces, lusummary(landuse, provinces, "province"))
+  provinces <- merge(provinces, lusummary(landcover, provinces, "province"))
   provinces@data <- provinces@data[, c("province", "11", "14", "20", "30", "40",
                                        "50", "60", "70", "100", "110", "120",
                                        "130", "140", "150", "160", "170", "190",
