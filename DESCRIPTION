@@ -1,11 +1,20 @@
 Package: globcoverVN
 Type: Package
-Title: Land use data for Vietnam from the GlobCover project
+Title: Land cover data for Vietnam from the GlobCover project
 Version: 0.1.0
-Author: Marc Choisy
-Maintainer: Marc Choisy <marc.choisy@ird.fr>
-Description: Contains raster and polygon data on land use in Vietnam from the GlobCover project.
+Authors@R: c(person("Marc", "Choisy", 
+                    email = "marc.choisy@ird.fr", 
+                    role = c("aut", "cre", "cph"),
+                    comment = c(ORCID = "https://orcid.org/0000-0002-5187-6390")),
+             person("Lucie", "Contamin", 
+                    email = "contamin.lucie@gmail.com", 
+                    role = "aut",
+                    comment = c(ORCID = "https://orcid.org/0000-0001-5797-1279")))
+Description: Contains raster and polygon data on land cover in Vietnam from the 
+    GlobCover project.
 License: MIT + file LICENSE
+URL: https://github.com/choisy/globcoverVN
+BugReports: https://github.com/choisy/globcoverVN/issues
 LazyData: TRUE
 RoxygenNote: 6.1.1
 Depends: R (>= 2.10)
