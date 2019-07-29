@@ -1,11 +1,13 @@
-#' sdgsdfg
+#' Get local land cover
 #'
-#' dsfgfdsg
+#' Retrieves a raster file containing the land cover of Vietnam.
 #'
-#' dsfgsdfg
-#' dsfgdsfg
+#' @examples
+#' library(raster)
+#' landcover <- getgcvn()
+#' plot(landcover)
 #' @export
-getgcvn <- function(x) {
+getgcvn <- function() {
   get("globcoverVN")
   globcoverVN@file@name <- system.file("extdata",
                                        "globcoverVN.tif",

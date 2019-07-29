@@ -3,7 +3,7 @@
 \docType{data}
 \name{provinces}
 \alias{provinces}
-\title{Land use by province for Vietnam}
+\title{Land cover by province for Vietnam}
 \format{The \code{data} slot of the \code{provinces} object is a data frame
 with 63 rows and 41 variables:
 \itemize{
@@ -61,7 +61,7 @@ provinces of Vietnam as of after 2008 and the land cover proportions weighted
 or not by the local human population density.
 }
 \details{
-The land use data come from the \href{http://due.esrin.esa.int/page_globcover.php}{GlobCover}
+The land cover data come from the \href{http://due.esrin.esa.int/page_globcover.php}{GlobCover}
 project as available from the current package through the function \code{getgcvn}
 function, the local human population density data come from the
 \href{http://www.worldpop.org.uk}{WorldPop} project as available from the
@@ -70,4 +70,3 @@ provinces of Vietnam come from the \href{http://www.gadm.org}{GADM} project
 as available from the \code{gadmVN} package.
 }
 \keyword{datasets}
-
