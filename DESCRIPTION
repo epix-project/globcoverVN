@@ -13,8 +13,8 @@ Authors@R: c(person("Marc", "Choisy",
 Description: Contains raster and polygon data on land cover in Vietnam from the 
     GlobCover project.
 License: MIT + file LICENSE
-URL: https://github.com/choisy/globcoverVN
-BugReports: https://github.com/choisy/globcoverVN/issues
+URL: https://github.com/epix-project/globcoverVN
+BugReports: https://github.com/epix-project/globcoverVN/issues
 Encoding: UTF-8
 LazyData: TRUE
 RoxygenNote: 6.1.1
