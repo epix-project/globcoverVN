@@ -10,9 +10,9 @@
 #' population <- worldpopVN::getpop(2015)
 #' polygons <- as_Spatial(gadmVN::gadm())
 #' polygons@proj4string <- population@crs
-#' globcoverVN:::lupopsummary(landcover, population, polygons, "province")
+#' globcoverVN:::lcpopsummary(landcover, population, polygons, "province")
 #' @noRd
-lupopsummary <- function(landcover, population, polygons, spatial_unit_names) {
+lcpopsummary <- function(landcover, population, polygons, spatial_unit_names) {
 
   if (any(!c(identical(raster::projection(landcover),
                        raster::projection(population)),
@@ -23,7 +23,7 @@ lupopsummary <- function(landcover, population, polygons, spatial_unit_names) {
     stop("'landcover', 'population', and 'polygon' should have the same ",
          "projections")
 
-  if (!identical(res(landcover), raster::res(population))) {
+  if (!identical(raster::res(landcover), raster::res(population))) {
     if (raster::res(population)[1] < raster::res(landcover)[1])
       population <- raster::resample(population, landcover)
     else landcover <- raster::resample(landcover, population)
