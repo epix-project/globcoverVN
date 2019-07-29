@@ -9,9 +9,9 @@
 #' landcover <- globcoverVN::getgcvn()
 #' polygons <- as_Spatial(gadmVN::gadm())
 #' polygons@proj4string <- landcover@crs
-#' globcoverVN:::lusummary(landcover, polygons, "province")
+#' globcoverVN:::lcsummary(landcover, polygons, "province")
 #' @noRd
-lusummary <- function(landcover, polygons, spatial_unit_names) {
+lcsummary <- function(landcover, polygons, spatial_unit_names) {
 
   if (!identical(raster::projection(landcover), raster::projection(polygons)))
     stop("'landcover' and 'polygon' should have the same projections")

@@ -100,8 +100,8 @@ The variables whose names end with `_pop` correspond to percentages of land
 cover when correcting for the local human population density as available from
 the `worldpopVN` package. The user interested in seeing how this is computed can
 have a look at the `data_creation` script in the `data-raw` folder of the
-package sources. This script makes use of the `lusummary` and `lupopsummary`
-non-exported functions that are in the `lusummary.R` and `lupopsummary.R` files
+package sources. This script makes use of the `lcsummary` and `lcpopsummary`
+non-exported functions that are in the `lcsummary.R` and `lcpopsummary.R` files
 in the `R` folder of the package sources. One can verify that the percentages of
 land cover sum to 1:
 
