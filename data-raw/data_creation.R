@@ -48,16 +48,18 @@ provinces <- lapply(provinces, f)
 out <- lapply(provinces, fct)
 names(out) <- paste0("y", dates, merge_hanois)
 list2env(out, globalenv())
-eply::evals(paste0("devtools::use_data(",
-                   paste(grep("^y\\d{4}.*$", ls(), value = TRUE), collapse = ", "),
-                   ", internal = TRUE, overwrite = TRUE)"))
+eval(parse(text = paste0("devtools::use_data(",
+                   paste(grep("^y\\d{4}.*$", ls(), value = TRUE),
+                         collapse = ", "),
+                   ", internal = TRUE, overwrite = TRUE)")))
 
 
 # ------------------------------------------------------------------------------
 
-eply::evals(paste0("devtools::use_data(",
-                   paste(c(grep("^y\\d{4}.*$", ls(), value = TRUE), "globcoverVN"),
-                         collapse = ", "), ", internal = TRUE, overwrite = TRUE)"))
+eval(parse(text = paste0("devtools::use_data(",
+                   paste(c(grep("^y\\d{4}.*$", ls(), value = TRUE),
+                           "globcoverVN"), collapse = ", "),
+                   ", internal = TRUE, overwrite = TRUE)")))
 
 #devtools::use_data(globcoverVN, internal = TRUE, overwrite = TRUE)
 #devtools::use_data(provinces, overwrite = TRUE)
