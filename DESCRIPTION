@@ -33,7 +33,9 @@ Suggests:
     sf,
     sp,
     gadmVN,
-    testthat
+    testthat,
+    worldpopVN
 Remotes:
-    epix-project/gadmVN
+    epix-project/gadmVN,
+    epix-project/worldpopVN
 VignetteBuilder: knitr
