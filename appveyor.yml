@@ -15,20 +15,16 @@ cache:
 
 environment:
   PKGTYPE: win.binary
-  USE_RTOOLS: true
-  NOT_CRAN: true
   # env vars that may need to be set, at least temporarily, from time to time
   # see https://github.com/krlmlr/r-appveyor#readme for details
   # USE_RTOOLS: true
   # R_REMOTES_STANDALONE: true
-  global:
-    _R_CHECK_FORCE_SUGGESTS_: FALSE
 
 # Adapt as necessary starting from here
 
 build_script:
   - travis-tool.sh install_github epix-project/gadmVN
-  - travis-tool.sh r_binary_install proto rgdal
+ # - travis-tool.sh r_binary_install proto rgdal
   - travis-tool.sh install_deps
 
 test_script:
