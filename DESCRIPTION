@@ -28,6 +28,7 @@ Suggests:
     classInt,
     class,
     RColorBrewer,
+    rgdal,
     methods,
     sf,
     sp,
