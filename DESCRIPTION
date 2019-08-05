@@ -33,4 +33,6 @@ Suggests:
     sp,
     gadmVN,
     testthat
+Remotes:
+    epix-project/gadmVN
 VignetteBuilder: knitr
