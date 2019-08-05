@@ -20,7 +20,7 @@ environment:
   # USE_RTOOLS: true
   # R_REMOTES_STANDALONE: true
   global:
-    _R_CHECK_SUGGESTS_ONLY_: TRUE
+    _R_CHECK_FORCE_SUGGESTS_: FALSE
 
 # Adapt as necessary starting from here
 
