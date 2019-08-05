@@ -11,7 +11,6 @@ Retrieves a raster file containing the land cover of Vietnam.
 }
 \examples{
 library(raster)
-library(rgdal)
 landcover <- getgcvn()
 plot(landcover)
 }
