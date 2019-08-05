@@ -23,7 +23,6 @@ Suggests:
     dplyr,
     weights,
     raster,
-    rgdal,
     knitr,
     rmarkdown,
     classInt,

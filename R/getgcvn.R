@@ -4,7 +4,6 @@
 #'
 #' @examples
 #' library(raster)
-#' library(rgdal)
 #' landcover <- getgcvn()
 #' plot(landcover)
 #' @export
