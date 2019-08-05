@@ -23,6 +23,8 @@ environment:
 # Adapt as necessary starting from here
 
 build_script:
+  - travis-tool.sh install_github epix-project/gadmVN
+  - travis-tool.sh r_binary_install proto rgdal
   - travis-tool.sh install_deps
 
 test_script:
