@@ -34,7 +34,8 @@ Suggests:
     sp,
     gadmVN,
     testthat,
-    worldpopVN
+    worldpopVN,
+    covr
 Remotes:
     epix-project/gadmVN,
     epix-project/worldpopVN
