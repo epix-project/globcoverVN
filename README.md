@@ -7,6 +7,8 @@
 
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/epix-project/globcoverVN?branch=master&svg=true)](https://ci.appveyor.com/project/epix-project/globcoverVN)
+[![Travis build
+status](https://travis-ci.org/epix-project/globcoverVN.svg?branch=master)](https://travis-ci.org/epix-project/globcoverVN)
 <!-- badges: end -->
 
 The `globcoverVN` package contains land cover data for Vietnam from the
