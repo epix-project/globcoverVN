@@ -26,6 +26,9 @@ build_script:
   - travis-tool.sh install_github epix-project/gadmVN
   - travis-tool.sh install_deps
 
+on_success:
+  - Rscript -e "covr::codecov()"
+
 test_script:
   - travis-tool.sh run_tests
 

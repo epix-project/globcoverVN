@@ -9,5 +9,4 @@ before_install:
   - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
   - sudo ldconfig
 
-after_success:
-  - Rscript -e 'covr::codecov()'
+r_check_args: "--no-tests"
