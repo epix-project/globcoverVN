@@ -28,11 +28,15 @@ Suggests:
     classInt,
     class,
     RColorBrewer,
+    rgdal,
     methods,
     sf,
     sp,
     gadmVN,
-    testthat
+    testthat,
+    worldpopVN,
+    covr
 Remotes:
-    epix-project/gadmVN
+    epix-project/gadmVN,
+    epix-project/worldpopVN
 VignetteBuilder: knitr
