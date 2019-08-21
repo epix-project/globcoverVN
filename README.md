@@ -23,11 +23,11 @@ Below we describe in detail these data and their use.
 ## Installation and loading
 
 You can install `globcoverVN` from
-[GitHub](https://github.com/choisy/globcoverVN) with:
+[GitHub](https://github.com/epix-project/globcoverVN) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("choisy/globcoverVN", build_vignettes = TRUE)
+devtools::install_github("epix-project/globcoverVN", build_vignettes = TRUE)
 ```
 
 Once installed, you can load the package:
